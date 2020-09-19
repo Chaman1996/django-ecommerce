@@ -1,0 +1,90 @@
+    {% extends 'base.html' %}
+    {% load static %}
+    {% block keywords%} {{setting.keywords}}{% endblock %}
+    {% block description %} {{setting.description}}{% endblock %}
+    {% block schema %}{{setting.schema}} {% endblock %}
+
+    {% block head%} {% endblock %}
+
+
+
+
+
+    {% block header %} {% include 'header.html' %} {% endblock %}
+    {% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+    {% block body %}
+
+
+    <!-- BREADCRUMB -->
+        <div id="breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li class="active">Contact Us</li>
+                </ul>
+            </div>
+        </div>
+        <!-- /BREADCRUMB -->
+
+
+
+        <!-- section -->
+        <div class="section">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+
+                        <div class="col-md-4">
+
+
+                            <div class="billing-details">
+
+                                <div class="section-title">
+                                    <h3 class="title">Conatct Us</h3>
+                                </div>
+
+
+                                {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}" role="alert">
+                                        {{message}}
+                                    </div>
+                                {% endfor %}
+                                {% endif %}
+
+                                <form id="checkout-form" class="clearfix" method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                            </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Send Message" class="btn btn-primary">
+                                </div>
+                            </form>
+                            </div>
+
+
+                    <div class="col-md-8">
+                            <div class="shiping-methods">
+                                <div class="section-title">
+                                    <h4 class="title">Contact Information</h4>
+                                </div>
+                                {{setting.contact |safe}}
+
+                            </div>
+
+
+                        </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+
+        <!-- /section -->
+
+
+    {% endblock %}
+
+
+    {% block footer %} {% include 'footer.html' %} {% endblock %}
